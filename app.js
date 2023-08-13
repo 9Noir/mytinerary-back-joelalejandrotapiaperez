@@ -11,6 +11,7 @@
 
 // IMPORTS
 import 'dotenv/config.js'                   // Importo UNICAMENTE la configuración de las variables de entorno
+import './config/database.js'
 import __dirname from './utils.js'          // Archivo creado. Importo la config de la ubicación del servidor (antes, con common.js, venia pre configurada)
 import createError from 'http-errors';      // Crear errores. Debe tener el mismo nombre que se va a usar en el error handler (linea 44)
 import express from 'express';              // Provee metodos y propiedades para levantar servidores
