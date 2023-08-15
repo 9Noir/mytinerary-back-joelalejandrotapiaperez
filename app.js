@@ -18,7 +18,7 @@ import express from 'express';              // Provee metodos y propiedades para
 import path from 'path';                    // Para conocer la ubicacion de nuestro servidor
 // import cookieParser from 'cookie-parser';// Modulos para manejos de cookies
 import logger from 'morgan';                // Registro de peticiones al servidor
-
+import cors from 'cors';
 import indexRouter from './routes/index.js';// Solo se va a configurar las rutas del enrutador de back principal
                                             // Este enrutador va a llamar a TODOS los otros recursos (cities,itineraries,users)
 // import usersRouter from './routes/users'; 
@@ -37,6 +37,7 @@ app.use(express.json());                                  // Obligo al servidor 
 app.use(express.urlencoded({ extended: false }));         // Obliga al servidor a leer params/queries
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));  // Obligo al servidor a usar los archivos estáticos de la carpeta public
+app.use(cors())                                           // Para permitir orígenes cruzados (front/back)
 
 // ROUTER
 app.use('/api', indexRouter);                             // Obligo al servidor a que use las rutas del enrutador principal con "/api"
