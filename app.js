@@ -45,18 +45,27 @@ app.use('/api', indexRouter);                             // Obligo al servidor 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {                        // Manejo de errores
-  next(createError(404));
+  // next(createError(404));
+  return res.status(404).json({
+    succes:false,
+    message:'not found '+req.method+' '+req.url
+  })
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // // set locals, only providing error in development
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // // render the error page
+  // res.status(err.status || 500);
+  // res.render('error');
+  return res.status(500).json({
+    success:false,
+    message:err.message,
+    response:null
+  })
 });
 
 // module.exports = app;
