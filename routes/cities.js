@@ -1,24 +1,13 @@
 import express from "express";
-import create from "../controllers/cities/create.js";
-import read from "../controllers/cities/read.js";
-import readOne from "../controllers/cities/readOne.js";
-import update from "../controllers/cities/update.js";
-import destroy from "../controllers/cities/destroy.js";
+import {create,update,read,readOne,destroy} from "../controllers/controllersHandler.js"
+import City from "../models/City.js";
 
 const router = express.Router();
 
-// CREATE
-router.post("/", create);
-
-// READ
-router.get("/",read)
-router.get("/:id",readOne)
-
-// UPDATE
-router.put("/:id",update)
-
-// DELETE
-router.delete("/:id",destroy)
-
+router.post("/", create(City));
+router.get("/",read(City))
+router.get("/:id",readOne(City))
+router.put("/:id",update(City))
+router.delete("/:id",destroy(City))
 
 export default router;
