@@ -18,7 +18,7 @@ import express from 'express';              // Provee metodos y propiedades para
 import path from 'path';                    // Para conocer la ubicacion de nuestro servidor
 // import cookieParser from 'cookie-parser';// Modulos para manejos de cookies
 import logger from 'morgan';                // Registro de peticiones al servidor
-import cors from 'cors';
+import cors from 'cors';                    // Módulo para desbloquear las políticas CORS
 import indexRouter from './routes/index.js';// Solo se va a configurar las rutas del enrutador de back principal
                                             // Este enrutador va a llamar a TODOS los otros recursos (cities,itineraries,users)
 // import usersRouter from './routes/users'; 
