@@ -11,13 +11,14 @@
 
 // IMPORTS
 import 'dotenv/config.js'                   // Importo UNICAMENTE la configuración de las variables de entorno
+import './config/database.js'
 import __dirname from './utils.js'          // Archivo creado. Importo la config de la ubicación del servidor (antes, con common.js, venia pre configurada)
 import createError from 'http-errors';      // Crear errores. Debe tener el mismo nombre que se va a usar en el error handler (linea 44)
 import express from 'express';              // Provee metodos y propiedades para levantar servidores
 import path from 'path';                    // Para conocer la ubicacion de nuestro servidor
 // import cookieParser from 'cookie-parser';// Modulos para manejos de cookies
 import logger from 'morgan';                // Registro de peticiones al servidor
-
+import cors from 'cors';                    // Módulo para desbloquear las políticas CORS
 import indexRouter from './routes/index.js';// Solo se va a configurar las rutas del enrutador de back principal
                                             // Este enrutador va a llamar a TODOS los otros recursos (cities,itineraries,users)
 // import usersRouter from './routes/users'; 
@@ -36,6 +37,7 @@ app.use(express.json());                                  // Obligo al servidor 
 app.use(express.urlencoded({ extended: false }));         // Obliga al servidor a leer params/queries
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));  // Obligo al servidor a usar los archivos estáticos de la carpeta public
+app.use(cors())                                           // Para permitir orígenes cruzados (front/back)
 
 // ROUTER
 app.use('/api', indexRouter);                             // Obligo al servidor a que use las rutas del enrutador principal con "/api"
@@ -43,18 +45,27 @@ app.use('/api', indexRouter);                             // Obligo al servidor 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {                        // Manejo de errores
-  next(createError(404));
+  // next(createError(404));
+  return res.status(404).json({
+    succes:false,
+    message:'not found '+req.method+' '+req.url
+  })
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  // // set locals, only providing error in development
+  // res.locals.message = err.message;
+  // res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // // render the error page
+  // res.status(err.status || 500);
+  // res.render('error');
+  return res.status(500).json({
+    success:false,
+    message:err.message,
+    response:null
+  })
 });
 
 // module.exports = app;
