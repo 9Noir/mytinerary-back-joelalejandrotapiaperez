@@ -14,6 +14,7 @@ export default (model) => async (req, res, next) => {
                     aux_size: 0,
                 },
             },
+            {$limit:12}
         ]);
 
         return res.status(200).json({

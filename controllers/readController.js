@@ -6,9 +6,17 @@ export default (model) => async (req, res, next) => {
         const modelQueries =
             {
                 cities: { populate: { path: "admin_id", select: "photo name mail -_id" } },
-                itineraries: { populate: { path: "city_id", select: "city -_id" },populate2: { path: "creator" ,select:"name lastName photo -_id"},populate3:{path:"comments"},populate4:{path:"comments",populate:{path:"user"}}  },
+                itineraries: {
+                    populate: [
+                        { path: "city_id", select: "city -_id" },
+                        { path: "creator", select: "name lastName photo -_id" },
+                        { path: "comments", populate: { path: "user_id", select: "name lastName photo createdAt -_id" } },
+                        { path: "likes", populate: { path: "user_id" ,select:"_id"} },
+                    ],
+                },
                 activities: { populate: { path: "itinerary_id", select: "name -_id" } },
-                users: { select: "-_id -password" },
+                likes: { populate: [{ path: "user_id" }, { path: "itinerary_id", select: "name" }] },
+                // users: { select: " -password" },
             }[model.modelName] || "";
 
         for (const field in query) {
@@ -28,9 +36,6 @@ export default (model) => async (req, res, next) => {
                   .find(query)
                   .sort({ [sort]: order })
                   .populate(modelQueries.populate)
-                  .populate(modelQueries.populate2)
-                  .populate(modelQueries.populate3)
-                  .populate(modelQueries.populate4)
                   .select(modelQueries.select)
                   .skip(skip)
                   .limit(limit);

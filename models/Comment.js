@@ -3,8 +3,8 @@ import { model, Schema, Types } from "mongoose";
 const commentSchema = new Schema(
     {
         content: { type: String, required: true },
-        user: { type: Types.ObjectId, required: true, ref: "users" },
-        itinerary: { type: Types.ObjectId, required: true, ref: "itineraries" },
+        user_id: { type: Types.ObjectId, required: true, ref: "users" },
+        itinerary_id: { type: Types.ObjectId, required: true, ref: "itineraries" },
     },
     {
         timestamps: true,
