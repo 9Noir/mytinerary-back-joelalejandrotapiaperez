@@ -8,7 +8,7 @@ import Like from "../models/Like.js";
 import Comment from "../models/Comment.js";
 import itinerariesSorted from "../controllers/itinerary/itinerariesSortedByLikesController.js";
 import toggleLike from "../controllers/itinerary/toggleLikeController.js";
-
+import itineraryCommentRouter from "./itineraryCommentRouter.js";
 let router = express.Router();
 
 // Endpoints
@@ -17,6 +17,7 @@ router.get("/", function (req, res, next) {
 });
 // Particulares
 router.get("/itineraries/sorted-by-likes", itinerariesSorted(Itinerary));
+router.use("/itineraries", itineraryCommentRouter);
 router.post("/itineraries/toggle-like", toggleLike());
 
 // Genéricas

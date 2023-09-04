@@ -1,15 +1,17 @@
 import express from "express";
-import { create, update, read, readOne, destroy } from "../controllers/handlerControllers.js";
+import createController from "../controllers/createController.js";
+import readController from "../controllers/readController.js";
+import readOneController from "../controllers/readOneController.js";
+import updateController from "../controllers/updateController.js";
+import destroyController from "../controllers/destroyController.js";
 
 const genericRouter = (model) => {
     const router = express.Router();
-
-    router.post("/", create(model));
-    router.get("/", read(model));
-    router.get("/:id", readOne(model));
-    router.put("/:id", update(model));
-    router.delete("/:id", destroy(model));
-
+    router.post("/", createController(model));
+    router.get("/", readController(model));
+    router.get("/:id", readOneController(model));
+    router.put("/:id", updateController(model));
+    router.delete("/:id", destroyController(model));
     return router;
 };
 
