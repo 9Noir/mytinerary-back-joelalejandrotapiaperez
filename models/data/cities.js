@@ -6,7 +6,7 @@ import User from "../User.js";
 const cities = [
     {
         country: "Cambodia",
-        fundation: "1113-01-01",
+        foundation: "1113-01-01",
         population: 120000,
         photo: "https://i.im.ge/2022/08/31/OE8zGY.cambodia.png",
         city: "Siem Reap",
@@ -17,7 +17,7 @@ const cities = [
     },
     {
         country: "Indonesia",
-        fundation: "1945-08-17",
+        foundation: "1945-08-17",
         population: 4230051,
         photo: "https://i.im.ge/2022/08/31/OE8kcM.baliTemple.png",
         city: "Bali",
@@ -28,7 +28,7 @@ const cities = [
     },
     {
         country: "Tahiti",
-        fundation: "1722-01-01",
+        foundation: "1722-01-01",
         population: 10605,
         photo: "https://i.im.ge/2022/08/31/OE8fih.boraBora.png",
         city: "Bora Bora Island",
@@ -39,7 +39,7 @@ const cities = [
     },
     {
         country: "Venezuela",
-        fundation: "1764-05-22",
+        foundation: "1764-05-22",
         population: 407452,
         photo: "https://i.im.ge/2022/08/31/OE8VX8.canaimaBolivar.png",
         city: "Bolívar",
@@ -50,7 +50,7 @@ const cities = [
     },
     {
         country: "Japan",
-        fundation: "1952-01-01",
+        foundation: "1952-01-01",
         population: 104000000,
         photo: "https://i.im.ge/2022/08/31/OE8ZKX.japanHonshuIsland.png",
         city: "Honshu Island",
@@ -61,7 +61,7 @@ const cities = [
     },
     {
         country: "Maldives Republic",
-        fundation: "1965-07-26",
+        foundation: "1965-07-26",
         population: 540542,
         photo: "https://i.im.ge/2022/08/31/OE8p7D.maldives.png",
         city: "Maldives Islands",
@@ -72,7 +72,7 @@ const cities = [
     },
     {
         country: "Argentina",
-        fundation: "1927-12-07",
+        foundation: "1927-12-07",
         population: 6143,
         photo: "https://i.im.ge/2022/08/31/OE8vA4.peritoMorenoCalafate.png",
         city: "El Calafate",
@@ -83,7 +83,7 @@ const cities = [
     },
     {
         country: "Australia",
-        fundation: "1788-01-26",
+        foundation: "1788-01-26",
         population: 5312000,
         photo: "https://i.im.ge/2022/08/31/OE8JpC.sidney.png",
         city: "Sydney",
@@ -94,7 +94,7 @@ const cities = [
     },
     {
         country: "Mexico",
-        fundation: "1325-06-20",
+        foundation: "1325-06-20",
         population: 212500,
         photo: "https://i.im.ge/2022/08/31/OE842q.tenochtitlan.png",
         city: "Tenochtitlan",
@@ -105,7 +105,7 @@ const cities = [
     },
     {
         country: "Chile",
-        fundation: "1928-01-01",
+        foundation: "1928-01-01",
         population: 165593,
         photo: "https://i.im.ge/2022/08/31/OE8Bwp.torresDelPaineMagallanesRegion.png",
         city: "Magallanes Region",
@@ -116,7 +116,7 @@ const cities = [
     },
     {
         country: "Africa",
-        fundation: "1964-10-24",
+        foundation: "1964-10-24",
         population: 19473125,
         photo: "https://i.im.ge/2022/08/31/OE8GKP.victoriaFallsZambia.png",
         city: "Zambia",
@@ -127,7 +127,7 @@ const cities = [
     },
     {
         country: "Egypt",
-        fundation: "0969-01-01",
+        foundation: "0969-01-01",
         population: 9540000,
         photo: "https://i.im.ge/2022/08/31/OERMl1.salahCitadelCairoCity.png",
         city: "Cairo Citadel",
