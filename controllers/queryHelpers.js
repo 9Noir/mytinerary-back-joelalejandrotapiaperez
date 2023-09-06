@@ -1,6 +1,6 @@
 export default (collectionName) =>
     ({
-        cities: { populate: { path: "admin_id", select: "photo name mail -_id" } },
+        cities: { populate: { path: "admin_id", select: "photo name email -_id" } },
         itineraries: {
             populate: [
                 { path: "city_id", select: "city -_id" },

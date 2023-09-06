@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 // Esquema de validación para el registro de usuarios
-const registerSchema = Joi.object({
+const signupSchema = Joi.object({
     name: Joi.string()
         .min(3)
         .max(20) // Establece límites razonables para la longitud del nombre.
@@ -22,7 +22,7 @@ const registerSchema = Joi.object({
             "any.required": "Last name is required",
         }),
 
-    mail: Joi.string()
+    email: Joi.string()
         .email() // Valida que el correo electrónico tenga un formato válido.
         .required()
         .messages({
@@ -42,7 +42,7 @@ const registerSchema = Joi.object({
         "any.required": "Country is required",
     }),
 
-    photo: Joi.string().empty(""), // Permite que el campo de la foto esté vacío.
+    photo: Joi.string().empty(), // Permite que el campo de la foto esté vacío.
 });
 
-export default registerSchema;
+export default signupSchema;

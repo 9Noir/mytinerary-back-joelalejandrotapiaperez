@@ -22,7 +22,6 @@ const commentRouter = Router();
 
 commentRouter.post("/:itinerary_id/addcomment", async (req, res, next) => {
     const createdComment = await Comment.create(req.body);
-    console.log(createdComment);
     updateItinerary(req, res, next, createdComment._id);
 });
 

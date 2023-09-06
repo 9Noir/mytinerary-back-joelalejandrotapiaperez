@@ -2,7 +2,7 @@ import Joi from "joi";
 
 // Esquema de validación para el registro de usuarios
 const signinSchema = Joi.object({
-    mail: Joi.string()
+    email: Joi.string()
         .email() // Valida que el correo electrónico tenga un formato válido.
         .required()
         .messages({
