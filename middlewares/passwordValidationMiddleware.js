@@ -10,7 +10,7 @@ export default async (req, res, next) => {
         if (!verified)
             return res.status(400).json({
                 success: false,
-                message: "Invalid credentials",
+                message: "INVALID_CREDENTIALS",
             });
         return next();
     } catch (error) {

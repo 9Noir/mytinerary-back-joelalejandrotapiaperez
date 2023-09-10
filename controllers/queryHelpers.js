@@ -10,6 +10,7 @@ export default (collectionName) =>
             ],
         },
         activities: { populate: { path: "itinerary_id", select: "name -_id" } },
-        likes: { populate: [{ path: "user_id" }, { path: "itinerary_id", select: "name" }] },
+        likes: { populate: [{ path: "user_id" }, { path: "itinerary_id", select: "name photo city_id" }] },
+        comments: { populate: { path: "itinerary_id", select: "name photo city_id" } },
         // users: { select: " -password" },
     }[collectionName] || "");
