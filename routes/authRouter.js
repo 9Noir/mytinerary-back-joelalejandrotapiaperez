@@ -12,6 +12,7 @@ import tokenValidation from "../middlewares/tokenValidationMiddleware.js";
 import tokenSignin from "../controllers/auth/tokenSigninController.js";
 import passport from "../middlewares/tokenDecodingMiddleware.js";
 import signout from "../controllers/auth/signoutController.js";
+import userUpdateController from "../controllers/auth/userUpdateController.js";
 
 const authRouter = Router();
 
@@ -19,4 +20,5 @@ authRouter.post("/signup", validator(signupSchema), emailExists, hashPassword, s
 authRouter.post("/signin", validator(signinSchema), emailNotExists, passwordValidation, tokenValidation, signin);
 authRouter.post("/token", passport.authenticate("jwt", { session: false }), tokenValidation, tokenSignin);
 authRouter.post("/signout", passport.authenticate("jwt", { session: false }), signout);
+authRouter.put("/userUpdate", passport.authenticate("jwt", { session: false }), emailExists, tokenValidation, hashPassword, userUpdateController);
 export default authRouter;
