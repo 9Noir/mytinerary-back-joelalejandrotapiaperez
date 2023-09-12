@@ -8,9 +8,9 @@ import Like from "../models/Like.js";
 import Comment from "../models/Comment.js";
 import itinerariesSorted from "../controllers/itinerary/itinerariesSortedByLikesController.js";
 import toggleLike from "../controllers/itinerary/toggleLikeController.js";
-import itineraryCommentRouter from "./itineraryCommentRouter.js";
+import itineraryCommentRouter from "../controllers/itinerary/itineraryCommentController.js";
 import authRouter from "./authRouter.js";
-
+import passport from "../middlewares/tokenDecodingMiddleware.js";
 let router = express.Router();
 
 // Endpoints
@@ -20,8 +20,8 @@ router.get("/", function (req, res, next) {
 // Particulares
 router.use("/auth", authRouter);
 router.get("/itineraries/sorted-by-likes", itinerariesSorted(Itinerary));
-router.use("/itineraries", itineraryCommentRouter);
-router.post("/itineraries/toggle-like", toggleLike());
+router.use("/itineraries/comments", passport.authenticate("jwt", { session: false }), itineraryCommentRouter);
+router.post("/itineraries/toggle-like", passport.authenticate("jwt", { session: false }), toggleLike());
 
 // Genéricas
 router.use("/users", generic(User));

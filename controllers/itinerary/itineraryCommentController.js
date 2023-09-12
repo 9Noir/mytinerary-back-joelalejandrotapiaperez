@@ -1,7 +1,7 @@
 import { Router } from "express";
-import Comment from "../models/Comment.js";
-import Itinerary from "../models/Itinerary.js";
-import queryHelpers from "../controllers/queryHelpers.js";
+import Comment from "../../models/Comment.js";
+import Itinerary from "../../models/Itinerary.js";
+import queryHelpers from "../queryHelpers.js";
 
 async function updateItinerary(req, res, next, newCommentId = null) {
     try {
