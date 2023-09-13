@@ -6,6 +6,7 @@ const signinSchema = Joi.object({
         .email() // Valida que el correo electrónico tenga un formato válido.
         .required()
         .messages({
+            "string.base": "EMAIL_INVALID_TYPE",
             "string.email": "EMAIL_INVALID",
             "any.required": "EMAIL_REQUIRED",
         }),
@@ -14,6 +15,7 @@ const signinSchema = Joi.object({
         .min(6) // Establece un mínimo de 6 caracteres para la contraseña.
         .required()
         .messages({
+            "string.base": "PASSWORD_INVALID_TYPE",
             "string.min": "PASSWORD_TOO_SHORT",
             "any.required": "PASSWORD_REQUIRED",
         }),

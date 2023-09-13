@@ -5,7 +5,7 @@ import readOneController from "../controllers/readOneController.js";
 import updateController from "../controllers/updateController.js";
 import destroyController from "../controllers/destroyController.js";
 import passport from "../middlewares/tokenDecodingMiddleware.js";
-
+import isAdmin from "../middlewares/isAdmin.js";
 const genericRouter = (model) => {
     const router = express.Router();
     // Aplicar autenticación solo a rutas que no sean GET, y donde el modelo sea de users
@@ -21,7 +21,7 @@ const genericRouter = (model) => {
     router.get("/", readController(model));
     router.get("/:id", readOneController(model));
     router.put("/:id", updateController(model));
-    router.delete("/:id", destroyController(model));
+    router.delete("/:id", passport.authenticate("jwt", { session: false }), isAdmin, destroyController(model));
     return router;
 };
 

@@ -1,5 +1,6 @@
 import { model, Schema } from "mongoose";
-
+// Define los posibles valores para el campo "role"
+const validRoles = ["admin", "user"];
 let collection = "users";
 let schema = new Schema(
     {
@@ -9,6 +10,8 @@ let schema = new Schema(
         photo: { type: String, default: "https://i.im.ge/2023/09/06/wWXRTM.defaultUserPhoto.jpg" }, //default: "url" vuelve al parametro opcional, sino usa el deafult
         password: { type: String, required: true },
         country: { type: String, required: true },
+        google: { type: Boolean, default: false },
+        role: { type: String, default: "user", enum: validRoles }, // Valor predeterminado "user"
     },
     {
         timestamps: true,
