@@ -1,9 +1,9 @@
 import { OAuth2Client } from "google-auth-library";
 export default async (req, res, next) => {
-    const client = OAuth2Client();
-    const { token_google } = req.body;
+    const client = new OAuth2Client();
+    const { token_id } = req.body;
     const verifyTicket = await client.verifyIdToken({
-        idToken: token_google,
+        idToken: token_id,
         audience: process.env.GOOGLE_ID,
     });
     const payload = verifyTicket.getPayload();
@@ -13,8 +13,9 @@ export default async (req, res, next) => {
         lastName: payload.family_name,
         email: payload.email,
         photo: payload.picture,
-        crountry: payload.local,
+        country: payload.locale,
         google: true,
+        role: "user",
     };
     req.user = user;
     return next();
