@@ -1,26 +1,21 @@
 import Itinerary from "../../models/Itinerary.js";
 import Like from "../../models/Like.js";
-// Controlador para manejar el toggle de like (crear o eliminar)
-export default () => async (req, res) => {
-    try {
-        const { _id = null, user_id, itinerary_id } = req.body;
-        if (_id) {
-            const deletedLike = await Like.findOneAndDelete({ _id: _id });
+import queryHelpers from "../queryHelpers.js";
 
-            if (deletedLike) {
-                await Itinerary.findByIdAndUpdate(itinerary_id, { $pull: { likes: deletedLike._id } });
-                return res.status(200).json({ succes: true, message: "Like deleted", response: deletedLike });
-            } else {
-                return res.status(404).json({ succes: false, message: "Like not found", response: deletedLike });
-            }
-        } else {
-            // Si el like no existe, crearlo
-            const newLike = new Like({ user_id: user_id, itinerary_id: itinerary_id });
-            await newLike.save();
-            await Itinerary.findByIdAndUpdate(itinerary_id, { $push: { likes: newLike._id } });
-            return res.status(201).json({ succes: true, message: "Like added", response: newLike });
-        }
+export default () => async (req, res, next) => {
+    try {
+        const isLiked = await Like.findOne(req.body);
+        const like = isLiked ? await Like.findOneAndDelete({ _id: isLiked._id }) : await Like.create(req.body);
+        const updateOperator = isLiked ? { $pull: { likes: like._id } } : { $push: { likes: like._id } };
+        const { populate } = queryHelpers("itineraries");
+        const updatedItinerary = await Itinerary.findByIdAndUpdate(req.body.itinerary_id, updateOperator, { new: true, populate });
+        return res.status(isLiked ? 200 : 201).json({
+            success: true,
+            message: `${isLiked ? "Deleted" : "Created"} like and updated itinerary`,
+            response: updatedItinerary,
+        });
     } catch (error) {
-        res.status(500).json({ succes: false, message: "Server error", response: error });
+        console.log(error);
+        next(error);
     }
 };
