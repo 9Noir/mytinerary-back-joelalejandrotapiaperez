@@ -33,13 +33,13 @@ Before you begin, make sure you have the following software installed on your sy
 1.  Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/yourusername/express-es6-mongodb-api.git
+    git clone https://github.com/9Noir/mytinerary-back-joelalejandrotapiaperez.git
     ```
 
 2.  Clone the repository to your local machine:
 
     ```
-    cd express-es6-mongodb-api
+    cd mytinerary-back
     ```
 
 3.  Install the project dependencies:
