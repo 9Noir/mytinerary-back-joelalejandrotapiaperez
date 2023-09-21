@@ -15,6 +15,7 @@ import signout from "../controllers/auth/signoutController.js";
 import userUpdateController from "../controllers/auth/userUpdateController.js";
 import verifyGoogle from "../middlewares/verifyGoogle.js";
 import findOrCreateGoogle from "../middlewares/findOrCreateGoogle.js";
+import emailController from "../controllers/auth/emailController.js";
 
 const authRouter = Router();
 
@@ -26,5 +27,7 @@ authRouter.post("/token", passport.authenticate("jwt", { session: false }), toke
 authRouter.post("/signout", passport.authenticate("jwt", { session: false }), signout);
 authRouter.put("/userUpdate", validator(signupSchema, true), passport.authenticate("jwt", { session: false }), emailExists(), tokenValidation, hashPassword, userUpdateController);
 authRouter.post("/google", verifyGoogle, findOrCreateGoogle, tokenValidation, signin);
+
+authRouter.post("/password-recovery", emailNotExists(), tokenValidation, emailController);
 
 export default authRouter;

@@ -11,6 +11,7 @@ import toggleLike from "../controllers/itinerary/toggleLikeController.js";
 import itineraryCommentRouter from "../controllers/itinerary/itineraryCommentController.js";
 import authRouter from "./authRouter.js";
 import passport from "../middlewares/tokenDecodingMiddleware.js";
+import emailRouter from "./emailRouter.js";
 let router = express.Router();
 
 // Endpoints
@@ -18,6 +19,7 @@ router.get("/", function (req, res, next) {
     res.render("index", { title: "Index" });
 });
 // Particulares
+router.use("/email", emailRouter);
 router.use("/auth", authRouter);
 router.get("/itineraries/sorted-by-likes", itinerariesSorted(Itinerary));
 router.use("/itineraries/comments", passport.authenticate("jwt", { session: false }), itineraryCommentRouter);
