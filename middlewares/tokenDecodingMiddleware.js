@@ -1,7 +1,8 @@
 import User from "../models/User.js";
 import passport from "passport";
 import { Strategy, ExtractJwt } from "passport-jwt";
-export default passport.use(
+
+passport.use(
     // Se obliga al passport a usar una estrategia de extracción de token
     new Strategy(
         // Depende del objeto de configuración de la estrategia
@@ -24,3 +25,11 @@ export default passport.use(
         }
     )
 );
+
+export default (req, res, next) => {
+    passport.authenticate("jwt", { session: false }, (error, user, info) => {
+        if (!user) return res.status(401).json({ success: false, message: "UNAUTHORIZED", response: info });
+        req.user = user;
+        next();
+    })(req, res, next);
+};

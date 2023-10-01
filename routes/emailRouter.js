@@ -2,7 +2,6 @@ import { Router } from "express";
 import nodemailer from "nodemailer";
 import emailNotExists from "../middlewares/emailNotExistsMiddleware.js";
 import tokenValidation from "../middlewares/tokenValidationMiddleware.js";
-import passport from "../middlewares/tokenDecodingMiddleware.js";
 const emailRouter = Router();
 
 const transporter = nodemailer.createTransport({
