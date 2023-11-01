@@ -28,7 +28,7 @@ passport.use(
 
 export default (req, res, next) => {
     passport.authenticate("jwt", { session: false }, (error, user, info) => {
-        if (!user) return res.status(401).json({ success: false, message: "UNAUTHORIZED", response: info });
+        if (user?.role != "admin") return res.status(401).json({ success: false, message: "UNAUTHORIZED", response: info });
         req.user = user;
         next();
     })(req, res, next);

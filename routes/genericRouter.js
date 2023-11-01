@@ -11,7 +11,7 @@ const genericRouter = (model) => {
     // Aplicar autenticación solo a rutas que no sean GET, y donde el modelo sea de users
     router.use((req, res, next) => {
         if (req.method !== "GET" || model.modelName == "users") {
-            tokenDecoding;
+            tokenDecoding(req,res,next);
         } else {
             next();
         }
